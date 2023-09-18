@@ -1,21 +1,21 @@
-import "dotenv/config"
-import "express-async-errors"
-import os from "os"
-import express from "express"
-import routes from "./routes/index"
-import connectDB from "./db/connect"
-import cors from "cors"
-import cookieParser from "cookie-parser"
-import { handleErrors } from "./middlewares/errors"
-
-const app = express()
-connectDB()
-app.use(cookieParser())
-app.use(express.json())
+import "dotenv/config";
+import "express-async-errors";
+import os from "os";
+import express from "express";
+import routes from "./routes/index";
+import connectDB from "./db/connect";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import { handleErrors } from "./middlewares/errors";
+import morgan from "morgan";
+const app = express();
+connectDB();
+app.use(cookieParser());
+app.use(express.json());
 
 // Para MULTER
-app.use(express.urlencoded({ extended: true }))
-
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 // Configuración de CORS, que solo nuestro frontend pueda acceder a la API
 app.use(
   cors({
@@ -23,20 +23,20 @@ app.use(
     methods: ["POST", "PUT", "DELETE", "GET", "OPTIONS"],
     credentials: true,
   })
-)
+);
 
 // Ruta para comprobar que el servidor está activo
 app.use("/health-check", (_, res) => {
-  res.status(200).send(os.hostname())
-})
+  res.status(200).send(os.hostname());
+});
 
 // Gestión de requests
-app.use("/api", routes)
+app.use("/api", routes);
 
 // Gestión de errores
-app.use(handleErrors)
+app.use(handleErrors);
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log("App escuchando en el puerto:", PORT)
-})
+  console.log("App escuchando en el puerto:", PORT);
+});

@@ -13,9 +13,9 @@ async function connectDB() {
     // await createUser({
     //   firstname: "Martín",
     //   lastname: "Gesualdo",
-    //   email: "ignaciogesualdo@gmail.com",
+    //   email: "mateodeveloper01@gmail.com",
     //   login_code: "123456",
-    //   image_url: "https://www.google.com",
+    //   // image_url: "https://www.google.com",
     //   roles: { admin: true, seller: true },
     // })
   } catch (error) {

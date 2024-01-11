@@ -40,3 +40,5 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log("App escuchando en el puerto:", PORT);
 });
+
+export default app

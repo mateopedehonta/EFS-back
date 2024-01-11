@@ -26,7 +26,7 @@ app.use(
 );
 
 // Ruta para comprobar que el servidor está activo
-app.use("/health-check", (_, res) => {
+app.use("/api/health-check", (_, res) => {
   res.status(200).send(os.hostname());
 });
 

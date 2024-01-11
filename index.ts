@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 // Configuración de CORS, que solo nuestro frontend pueda acceder a la API
+console.log(process.env.FRONTEND_URL);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL, // Obligatorio que no sea "*" cuando usamos "credentials: true"
